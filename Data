@@ -1,0 +1,15 @@
+POST:
+{
+	"url":"http://www.hello.com",
+	"callback_at": "2013-10-04T05:34:28+05:30",
+	"reference_id": "1234",
+	"request_method":"post",
+	"request_body":{"id":"1","info":"my Request"}
+}
+
+PUT:
+{
+	"url":"http://www.hello.com",
+	"callback_at": "2013-10-04T05:38:28+05:30",
+	"request_method":"get"
+}
