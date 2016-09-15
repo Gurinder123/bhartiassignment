@@ -9,10 +9,7 @@ import com.airtel.gurinder.repository.ScheduleTaskRepository;
 import com.airtel.gurinder.service.ScheduledService;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,6 +43,11 @@ public class ScheduledServiceTest {
         Optional<ScheduleResponseDto> data = service.createNewTask(dto, "data");
         ScheduleResponseDto scheduleResponseDto = data.get();
         assertEquals(dto.getUrl(), scheduleResponseDto.getScheduleResponseBodyDto().getUrl());
+       /* ArgumentCaptor Example for verifying ScheduleTask created by new*/
+        ArgumentCaptor<ScheduleTask> captor = ArgumentCaptor.forClass(ScheduleTask.class);
+        Mockito.verify(scheduleTaskRepository).save(captor.capture());
+        ScheduleTask scheduleTask = captor.getValue();
+        assertEquals("http://www.google.com", scheduleTask.getUrl());
     }
 
     @Test
