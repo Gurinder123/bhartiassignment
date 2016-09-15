@@ -30,6 +30,9 @@ public class ScheduledServiceTest {
     @InjectMocks
     private ScheduledService service = new ScheduledService(scheduleTaskRepository);
 
+    @Captor
+    private ArgumentCaptor<ScheduleTask> captor;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -44,7 +47,7 @@ public class ScheduledServiceTest {
         ScheduleResponseDto scheduleResponseDto = data.get();
         assertEquals(dto.getUrl(), scheduleResponseDto.getScheduleResponseBodyDto().getUrl());
        /* ArgumentCaptor Example for verifying ScheduleTask created by new*/
-        ArgumentCaptor<ScheduleTask> captor = ArgumentCaptor.forClass(ScheduleTask.class);
+//        ArgumentCaptor<ScheduleTask> captor = ArgumentCaptor.forClass(ScheduleTask.class);
         Mockito.verify(scheduleTaskRepository).save(captor.capture());
         ScheduleTask scheduleTask = captor.getValue();
         assertEquals("http://www.google.com", scheduleTask.getUrl());
