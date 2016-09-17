@@ -47,11 +47,11 @@ public class ScheduledService {
         System.out.println("*************saving now*************");
         scheduleTask = scheduleTaskRepository.save(scheduleTask);
         System.out.println("*************saving done*************");
-        if (scheduleTask != null) {
+        if (scheduleTask != null)
             return Optional.of(createResponse(scheduleTask));
-        } else {
+        else
             return Optional.empty();
-        }
+
     }
 
     private ScheduleResponseDto createResponse(ScheduleTask scheduleTask) {
@@ -70,11 +70,11 @@ public class ScheduledService {
 
     public Optional<ScheduleResponseDto> findById(Integer id) {
         ScheduleTask scheduleTask = scheduleTaskRepository.findOne(id);
-        if (scheduleTask != null) {
+        if (scheduleTask != null)
             return Optional.of(createResponse(scheduleTask));
-        } else {
+        else
             return Optional.empty();
-        }
+
     }
 
     public boolean deleteById(Integer id) {
@@ -100,25 +100,23 @@ public class ScheduledService {
             scheduleTask.setRequestMethod(updateRequestBody.getRequestMethod());
             scheduleTask.setRetryCount((scheduleTask.getRetryCount()) + 1);
             scheduleTask = scheduleTaskRepository.save(scheduleTask);
-            if (scheduleTask != null) {
+            if (scheduleTask != null)
                 return Optional.of(createResponse(scheduleTask));
-            } else {
+            else
                 return Optional.empty();
-            }
-        } else {
+        } else
             return Optional.empty();
-        }
 
     }
 
 
     public Optional findAll() {
         List<ScheduleTask> allScheduleTasks = scheduleTaskRepository.findAll();
-        if (!allScheduleTasks.isEmpty()) {
+        if (!allScheduleTasks.isEmpty())
             return Optional.of(allScheduleTasks);
-        } else {
+        else
             return Optional.empty();
-        }
+
     }
 
     public void save(List<ScheduleTask> scheduleTaskList) {
